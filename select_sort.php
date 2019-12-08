@@ -1,8 +1,8 @@
 <?php
 
 /**
- * 选择排序,一个一个进行比较
- * O(n*n)
+ * 选择排序
+ * 找出数组中的最小值
  */
 function select_sort_find_min($input_arr) {
 	$min_index = null;
@@ -38,9 +38,10 @@ function select_sort_main() {
 		//3、原数组的最小值去除，不再参与新一轮的排序。
 		$sorted_arr[] = $min['val']; 
 		unset($arr[$min['index']]);
+		//unset 之后arr数组会被改变,reference
 	}
 	print_r($sorted_arr);
 }
 
-select_sort_main();
 
+select_sort_main();
