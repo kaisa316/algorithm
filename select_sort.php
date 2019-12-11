@@ -40,8 +40,7 @@ function select_sort_main() {
 		unset($arr[$min['index']]);
 		//unset 之后arr数组会被改变,reference
 	}
-	print_r($sorted_arr);
+
+	return $sorted_arr;
 }
 
-
-select_sort_main();
