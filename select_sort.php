@@ -2,7 +2,6 @@
 
 /**
  * 选择排序
- * 找出数组中的最小值
  */
 function select_sort_find_min($input_arr) {
 	$min_index = null;
@@ -26,9 +25,11 @@ function select_sort_find_min($input_arr) {
 
 /**
  * 选择排序 主方法
+ * @param 需要排序的无序数组
+ * @return 有序数组,从小到大
  */
-function select_sort_main() {
-	$arr = [5,3,8,10,4,7,9,88,34,23,99,2];
+function select_sort_main($arr) {
+	//$arr = [5,3,8,10,4,7,9,88,34,23,99,2];
 	$len = count($arr);
 	$sorted_arr = [];
 	for($i=0;$i<$len;$i++) {
