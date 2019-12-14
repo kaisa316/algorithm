@@ -36,13 +36,13 @@ function binary_search($arr,$search_val) {
 
 		if($mid_val < $search_val) {
 			//小了，右侧区域
-			$min_index = $mid_index+1;
+			$min_index = $mid_index+1;//+1 是关键。在自己的设想中是没有的
 		} else {
 			//大了，左侧区域
-			$max_index = $mid_index-1;
+			$max_index = $mid_index-1;//-1 是关键。在自己的设想中是没有的
 		}
 
-	} while($min_index <= $max_index);
+	} while($min_index <= $max_index);// 小于等于是关键，在自己的设想中，赢$min_index != $max_index，但这种在最后的边界上是有问题的。
 	
 } 
 
