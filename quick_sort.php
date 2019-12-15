@@ -14,26 +14,14 @@
 function quick_sort($arr) {
 	//边界处理。空或者只有一个元素，直接返回。
 	//基准条件: 就是边界处理的情况。
-	//两个呢？两个元素可以直接比较大小，进行排序。
 	//三个呢？既然两个可以排序，想办法变成两个的处理情况。办法如下
 	//  从中找个基准值，比他小的放在left左边；比他大的放在后边right。三个排序：left array+基准值+right array
 	//四个呢？四个也像三个一样。从中找个基准值。左边的比他小；右边的比他大。
 	//基准值就从数组的中间找，类似二分
 	$cnt = count($arr);
-	if(empty($arr) || $cnt == 1) {
+	if($cnt < 2) {
 		return $arr;
 	}	
-
-	if($cnt == 2) {
-		if($arr[0]>$arr[1]) {
-			//swap
-			$temp = $arr[0];
-			$arr[0] = $arr[1];
-			$arr[1] = $temp;
-		}
-		return $arr;
-	}
-
 	$min_index = 0;
 	$max_index = $cnt - 1;	
 	$mid_index = ceil(($min_index+$max_index)/2);
@@ -41,22 +29,28 @@ function quick_sort($arr) {
 	$left_arr = [];
 	$right_arr = [];
 
-	foreach($arr as $val) {
+	foreach($arr as $index=> $val) {
+		if($index == $mid_index) {//关键点，没有这行将导致死循环。mid-val不能包含在left_arr或者righ_arr中 
+			continue;//自己，跳过
+		}
 		if($val < $mid_val) {
 			$left_arr[] = $val;
-		} else {
+		} else  {
 			$right_arr[] = $val;
 		}
 	} 
 
 	//当左右数组各自都有很多元素时,左右的数组怎样再进行递归呢？
 	//左边的数组一次递归；右边的数组一次递归？
-	$result = array_merge(quick_sort($left_arr),array($mid_val),quick_sort($right_arr));
+	//是的，对于这个问题的答案就是对于子数组继续这样的处理，递归。	
+	$left_arr = 	quick_sort($left_arr);
+	$right_arr = 	quick_sort($right_arr);
+	$result = array_merge($left_arr,array($mid_val),$right_arr);
 	return $result;
 }
 
 function quick_sort_main() {
-	$arr = [2,10,13,5,8];
+	$arr = [2,10,13,5,8,45,12,300,23,56,89];
 	$sorted_arr = quick_sort($arr);
 	print_r($sorted_arr);
 }
