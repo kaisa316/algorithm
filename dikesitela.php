@@ -69,6 +69,8 @@ function dikesitela()
     }
 
     print_r($all_nodes);
+    $end_node = 'f';
+    echo "查找路径:". format_path($end_node,$all_nodes);
 }
 
 /**
@@ -95,6 +97,17 @@ function search_min_node($arr,$searched_nodes)
         return 'a'; //default value
     }
     return $key;
+}
+
+//格式化路径
+function format_path($node_key,$all_nodes) {
+    $node = $all_nodes[$node_key];
+    $parent_node_key = $node['parent_node'];
+    if($parent_node_key == null) {//基线条件
+        return  strtoupper($node_key) ;
+    }
+
+    return strtoupper($node_key)."->" . format_path($parent_node_key,$all_nodes);
 }
 
 dikesitela();
