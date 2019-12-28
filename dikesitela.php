@@ -1,12 +1,16 @@
 <?php
 
 /**
- * 狄克斯特拉算法
+ * 狄克斯特拉算法--加权最短路径问题
+ * 
+ * 从已知的节点中找到最便宜的那个
+ * 更新最便宜的那个节点邻居的最小开销
+ * 处理过的节点不再参与
  */
 
 function dikesitela()
 {
-    //所有节点,parent_node父节点,min_cost当前节点目前的最小开销；-1代表无穷大
+    //所有节点,parent_node父节点,min_cost当前节点目前的最小开销；null代表无穷大
     $all_nodes = [
         'a'=>  ['parent_node'=>null,'min_cost'=>0],
         'b' => ['parent_node' => null, 'min_cost' => null],
