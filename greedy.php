@@ -3,9 +3,8 @@
 /**
  * 贪婪算法
  * 能装下最贵的那个
- * 结束的最小的那个
- * 即每次选择都是最贪婪的那个
- * 
+ * 结束的最早那个
+ * 即每次的选择都是最贪婪的那个
  */
 
 
@@ -15,8 +14,7 @@
  * 所以每次都找结束最早的那堂课 
  * 下堂课的开始时间必须在堂课的结束时间之后的
  */
-function greedy_class()
-{
+function greedy_class() {
     //所有的课程
     $all_course = [
         ['name' => '美术课', 'start_time' => 9, 'end_time' => 10],
@@ -51,8 +49,7 @@ function greedy_class()
  * @param pre_end_time 上一堂课的结束时间
  * @return array
  */
-function next_course($all_course, $pre_end_time)
-{
+function next_course($all_course, $pre_end_time) {
     if (empty($all_course)) {
         return array();
     }
@@ -70,6 +67,8 @@ function next_course($all_course, $pre_end_time)
 
         //最早结束的课程,这里找最优的那个
         if (is_null($next) || $course["end_time"] < $next["end_time"]) {
+            //已知的比无知(null)的好
+            //再从已知中比较，找到更好的
             $key = $index;
             $next = $course;
         }
