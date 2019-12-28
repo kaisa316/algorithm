@@ -117,7 +117,7 @@ function greedy_collection() {
     $uncover_citys = $all_citys;//初始值都未覆盖
     $result_radio = [];//最终的结果集 
     do {
-        $radio = get_radio_station($uncover_citys, $radio_city_map,$result_radio);
+        $radio = get_radio_station($uncover_citys, $radio_city_map);
         if(empty($radio)) {
             break;
         }
