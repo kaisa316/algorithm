@@ -11,8 +11,10 @@ function main() {
     $sorted_arr = select_sort($arr);
     print_r($sorted_arr);
     echo '------'.PHP_EOL;
-    $sorted_arr2 = select_sort2($arr);
-    print_r($sorted_arr2);
+    // $sorted_arr2 = select_sort2($arr);
+    // print_r($sorted_arr2);
+    $quick_sort = quick_sort($arr);
+    print_r($quick_sort);
 }
 
 function select_sort($arr) {
@@ -83,4 +85,36 @@ function select_sort2($arr) {
     }
     
     return $sorted_arr;
+}
+
+function quick_sort($arr) {
+    //分而治之。一个能做；两个能做；三个变成两个；四个变成三个
+    //递归
+    //left array+基准+right array
+    $len = count($arr);
+    if($len < 2) {
+        return $arr;//递归的终止条件
+    }
+
+    //基准值,中分
+    $middle = ceil($len/2); 
+    $left_arr = [];
+    $right_arr = [];
+    foreach($arr as $key=>$val) {
+        if($key == $middle) {
+            //排除基准值本身
+            continue;
+        }
+        if($val < $arr[$middle]) {
+            $left_arr[] = $val;
+        } else {
+            $right_arr[] = $val;
+        }
+    }
+
+    $left = quick_sort($left_arr);
+    $right = quick_sort($right_arr);
+    
+    return array_merge($left,[$arr[$middle]],$right);
+
 }
